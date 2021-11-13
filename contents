@@ -1,0 +1,137 @@
+
+1.Web FrameWorks
+
+*Beego web framework
+   
+Beego is a Go framework for quickly developing enterprise applications, such as RESTful APIs, web apps, and backend services.
+
+It is inspired by Tornado, Sinatra and Flask. Interfaces and struct embedding are two Go-specific features in beego.
+Beego is divided into 4 parts:
+Base modules: including log module, config module, governor module;
+Task: is used for running timed tasks or periodic tasks;
+Client: including ORM module, httplib module, cache module;
+Server: including web module. We will support gRPC in the future;
+*Fiber Go Framework
+
+If you're coming from another programming language (such as Python, Ruby, or JavaScript), the Fiber web framework will ease your transition to Go.
+Fiber is a web framework inspired by Express and built on top of Fasthttp, Go's fastest HTTP engine. Designed with zero memory allocation and performance in mind to make things easier for quick development.It has a lot of common aspects and is designed to make the product development process as simple as possible for developers with different skill levels.
+Fiber can provide the following benefits to developers who are already using other Go web frameworks or API tools:
+High performance and a small memory footprint
+Most tasks have built-in middleware.
+Support of all popular template engines
+Rapid server-side programming
+Easy serve static files and work with databases
+
+*Gin framework
+
+Gin is a Golang-based HTTP web framework with outstanding performance . Gin claims to be up to 40 times faster than martinis and has a martini-like API.
+Gin is a Go framework for developing web apps and microservices. It includes a set of commonly used functions (such as routing, middleware support, rendering, and so on) that reduce boilerplate code and make web application development easier.
+
+
+
+*Gorm
+The Go community has created a number of Object Relational Mapping libraries (ORMs) that allow Go developers to map directly to a SQL database like PostgreSQL using JSON key:value pair syntax and encoding. ORMs allow developers to map data to SQL using their preferred programming paradigm.
+
+An ORM transforms the data from your database into Golang objects and vice versa. Instead of entering SQL queries straight into your application when interacting with an ORM, you can map your data more better using Golang structs like this:
+
+ORMs aren't for everyone since they put a layer of abstraction between the data in the database and the user. Another disadvantage, depending on whatever library you pick, is that while SQL is here to stay, ORM frameworks appear and disappear. However, ORMs make it much easier to maintain track of web application data in Go and reduce the amount of time spent writing by replacing a number of SQL statements with something more user-friendly.
+
+A number of Go ORMs are supported and advocated in the community, and they're all listed in GoCenter::
+
+XORM: A simple and powerful ORM framework for Go
+Go-PG: A postgreSQL client and ORM for Golang
+SQLBOILDER: A tool to generate a Go ORM tailored to your database schema
+SQLX: Not an ORM, but another great tool for SQL in Go
+
+
+2.WebAssembly using Golang-alternative for javascript
+WebAssembly (WASM) is an open technology that allows you to compile your program into portable binary code and run it in a web browser. It was created to enable high-performance applications on web pages, as opposed to JavaScript.
+
+The only programming language that the browser knows is javaScript. JavaScript has shown to be reliable and capable of delivering the performance required by most online applications. However, because JavaScript is interpreted, it falls short in 3D games, virtual reality, augmented reality, and picture editing apps. Despite the fact that JavaScript engines like Gecko and V8 provide Just in Time compilation, JavaScript cannot achieve the high performance required by current online applications.WebAssembly is meant to solve this problem.
+
+WebAssembly is a browser-based virtual assembly language. When we say virtual, we're referring to the fact that it can't run natively on the hardware. Because the browser can run on any architecture, WebAssembly cannot be run directly on the underlying hardware by the browser. However, because it is compiled and is closer to the hardware architecture than JavaScript, this highly optimized virtual assembly format can be handled much faster by modern browsers than vanilla JavaScript. It is more compatible with hardware than JavaScript.
+
+And it is possible to cross compile Go code to WebAssembly.Go has added support for WebAssembly from version 1.1 onwards.
+
+
+3.What is a jwt token and what is authentication and authorization in golang
+
+A JSON Web Token (JWT) is a compact and self-contained method for securely communicating information between parties as a JSON object, and it's widely used by API developers.
+
+JWTs are popular because of the following reasons:
+
+A JWT has no state. Unlike opaque tokens, it does not require storage in a database (persistence layer).
+A JWT's signature is never decoded once it is created, ensuring that the token is safe and secure.
+A JWT can be set to be invalid after a specified amount of time has passed. In the event that the token is hijacked, this helps to limit or completely eliminate any damage that a hacker could cause.
+A JSON Web Token is made up of three parts that are separated by a . (dot): 
+Header: It specifies the type of token and the signature algorithm that was used.
+Payload: It is made up of claims. Claims include application data (email id, username, role), the token's expiration term (Exp), and so on.
+Signature:It is generated using the secret (provided by the user), encoded header, and payload.
+
+Authentication is the process of verifying that the users of a given application are legitimate. That is why it is considered the first and most important step in the development of an app. It's about security. A basic example of authentication is allowing someone to send a request to a server.
+ Authorization is a process of where the user roles are being managed.. In a nutshell, it entails granting a user unique access permissions to particular resources.
+
+
+4.What is redis & redis with golang
+
+Redis is a great open-source in-memory data structure store that can be used as a database, a caching service, or even a message broker for your app.
+
+It is extremely versatile and fast, and it supports a wide range of alternative data structures. If resiliency is a problem, you'll be relieved to learn that it comes with built-in replication and may be operated in a cluster to ensure that your applications are not reliant on a single instance.
+
+Go-redis/redis is a type-safe Redis client library for Go that includes Pub/Sub, sentinel, and pipelining support.
+
+The "client" – a thread-safe value that may be shared by several goroutines and normally lives throughout the lifetime of the application – manages the connection to a Redis database.
+The redis Options parameter in Go-redis gives a plethora of configuration options. PoolSize, for setting the maximum number of connections, and TLSConfig, for connecting to a TLS-protected Redis server, are two of the options.
+
+
+5.Ebiten Framework
+
+Ebiten is an open source game library written in the Go programming language. Ebiten's simple API makes it simple to create 2D games that can be played on  multiple platforms.
+Everything is an image in Ebiten: the screen, data from an image file, and even offscreen objects are all image objects. Drawing one image on top of another is the most common rendering operation.
+
+Ebiten games work on desktop (Windows, macOS, Linux, and FreeBSD), web browsers (through WebAssembly), and even on mobile (Android and iOS)! Plus, Ebiten is implemented in pure Go on Windows, so Windows developers do not need to install a C compiler. Nintendo Switch™ is also supported!
+
+Ebiten games run incredibly quickly with GPU power, despite the fact that the drawing API is very simple. Internally, multiple images are combined into a texture atlas, and drawing operations are performed in batches wherever possible.
+
+6.What is websockets and socket.io with golang
+
+WebSockets are a type of communication protocol that uses full-duplex communication channels over a single TCP connection.
+
+In comparison to alternatives that use half-duplex communication, such as HTTP polling, full-duplex communication allows both the server and the client to transmit and receive data simultaneously without being interrupted, decreasing overhead.
+
+WebSocket connections are requested by browsers and are responded to by servers, after which a connection is established.This is commonly called a handshake.
+
+How to make a WebSocket application in Go To make a simple WebSocket echo server using the net/http library, you'll need to do the following:
+ 1) Initiate a handshake
+ 2) Receive data frames from the client 
+ 3) Send data frames to the client
+ 4) Close the handshake
+Although using WebSockets in Go is simple and straightforward, this combination can have a significant impact on the performance of your application.
+
+We have a few distinct alternatives for implementing websockets in Go.Socket-io is one of the most widely used libraries for frontend socket connection, we'll be using the Golang version to make integration easier.
+
+7. Go ethereum intro
+Ethereum is a decentralized platform for smart contracts, which are programs that operate exactly as they are planned without the possibility of downtime, censorship, fraud, or third-party interference.
+And it is a blockchain that allows developers to create decentralized applications that can't be taken down or modified by a single party. Every full client on the Ethereum network executes every application deployed to the network.
+
+
+
+8.Go with docker
+
+Docker is a technology that allows developers, system administrators, and others to easily deploy their applications in a sandbox (called containers) that runs on the host operating system, which in this case is Linux. 
+
+We use docker with a GO application.Why use Docker with a Go application? Some of the reasons to use Docker with Go include
+
+1.Templates and configuration files are common in web applications. Docker assists in keeping these files up to date with the binary.
+2.Docker ensures that development and production environments are identical. An application may work in development but not in production at times. You won't have to worry about issues like these if you use Docker.
+3.A large team's machines, operating systems, and installed software can all be very different. Docker provides a way to maintain a consistent development environment. This increases team productivity while reducing friction and avoidable issues during the development process.
+
+
+9.Kubernetes
+
+Kubernetes is a container orchestration technology that lets users deploy and scale microservice applications at any scale, from one to thousands. The learning curve for application developers is particularly steep. Unleashing the power of Kubernetes is sometimes more complicated than it appears at first. Knowing what to do is only half the battle; you must next select the appropriate tools to do the task.
+
+When it comes to creating efficient development workflows on Kubernetes, application developers face two unique challenges.
+
+1.The majority of development procedures are built for local development, while Kubernetes apps are cloud native.
+2.The development environments become more complex as Kubernetes applications progress into complex microservice architectures, since each microservice adds more dependencies. These services rapidly require more resources than are typically available in a local development environment.

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link href="assests/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<script src="wasm_exec.js"></script>
+
+<script>
+    if (!WebAssembly.instantiateStreaming) {
+        // polyfill
+        WebAssembly.instantiateStreaming = async (resp, importObject) => {
+            const source = await (await resp).arrayBuffer();
+            return await WebAssembly.instantiate(source, importObject);
+        };
+    }
+
+    const go = new Go();
+    let mod, inst;
+    WebAssembly.instantiateStreaming(fetch("lib.wasm"), go.importObject).then(
+        async result => {
+            mod = result.module;
+            inst = result.instance;
+            await go.run(inst);
+        }
+    );
+</script>
+<section
+        style="background: #adb5bd; border-radius: 30px; align-items: center; height: 350px; width: 400px;margin: auto;position: absolute; left: 0; right:0;">
+    <section>
+        <h1 style="font-size: 30px; margin-left: 2cm">Simple Calculator</h1>
+    </section>
+    <div>
+        <label style="margin-left: 1cm">Num 1 :</label>
+        <input class="col-md-6" style="margin: 20px" type="number" id="value1"/>
+        <label style="margin-left: 1cm">Num 2 :</label>
+        <input class="col-md-6" style="margin: 20px" type="number" id="value2"/>
+    </div>
+    <div style="margin-left: 3.2cm; margin-bottom: 20px">
+        <button class="btn btn-primary" style="font-size: 20px; font-weight: bold; align-items: center"
+                onClick="add('value1', 'value2', 'result');" id="addButton">
+            +
+        </button>
+        <button class="btn btn-danger" style="font-size: 20px; font-weight: bold; align-items: center"
+                onClick="subtract('value1', 'value2', 'result');" id="subtractButton">
+            -
+        </button>
+
+        <button class="btn btn-secondary"
+                style="font-size: 20px; font-weight: bold; align-items: center"
+                onClick="divide('value1', 'value2', 'result');" id="divideButton">
+            /
+        </button>
+
+        <button class="btn btn-warning"
+                style="font-size: 20px; font-weight: bold; align-items: center"
+                onClick="multiple('value1', 'value2', 'result');" id="multipleButton">
+            *
+        </button>
+    </div>
+    <label style="margin-left: 1cm">Result :</label>
+    <input class="col-md-6" style="margin: 20px" type="text" id="result"/>
+</section>
+</body>
+</html>

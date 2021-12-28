@@ -1,0 +1,11 @@
+// open new terminal and run this codes
+
+Set GOOS=js
+
+Set GOARCH=wasm
+
+go build -o lib.wasm main.go
+
+// open another new terminal and run this code
+
+go run server.go
